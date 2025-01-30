@@ -1,1 +1,2 @@
-Release v0.1.0 - 30/01/2025
+# Release v0.1.1 - 30/01/2025
+- Updated project metadata
