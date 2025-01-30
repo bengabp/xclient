@@ -1,5 +1,5 @@
-__title__ = "twitter-api-client"
+__title__ = "xclient"
 __description__ = "Implementation of X/Twitter v1, v2, and GraphQL APIs."
-__version__ = "0.10.22"
-__author__ = "Trevor Hobenshield"
+__version__ = "1.0"
+__author__ = "Ben"
 __license__ = "MIT"

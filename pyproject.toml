@@ -1,6 +1,6 @@
 [project]
 name = "xclient"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Implementation of X/Twitter v1, v2, and GraphQL APIs."
 authors = [
     {name = "bengabp",email = "bengabdev4@gmail.com"}
@@ -17,8 +17,18 @@ dependencies = [
     "websockets (>=14.2,<15.0)",
     "uvloop (>=0.21.0,<0.22.0) ; platform_system != \"Windows\""
 ]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
+[tool.poetry]
+version = "1.0"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
