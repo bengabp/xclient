@@ -86,7 +86,7 @@ class Search:
         _, qid, name = Operation.SearchTimeline
         r = await client.get(f'https://twitter.com/i/api/graphql/{qid}/{name}', params=build_params(params))
 
-        self.rate_limits[name] = {key: r.headers.get(key) for key in  ['x-rate-limit-remaining', 'x-rate-limit-reset', 'x-rate-limit-limit']}
+        self.rate_limits[name] = {key: int(r.headers.get(key)) if r.headers.get(key) else None for key in  ['x-rate-limit-remaining', 'x-rate-limit-reset', 'x-rate-limit-limit']}
         data = r.json()
 
         cursor = self.get_cursor(data)
