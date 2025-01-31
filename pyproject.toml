@@ -31,7 +31,7 @@ Issues = "https://github.com/bengabp/xclient/issues"
 Changelog = "https://github.com/bengabp/xclient/tree/main/CHANGELOG.md"
 
 [tool.poetry]
-version = "0.1.1"
+version = "0.1.2"
 packages = [
     { include = "xclient" }
 ]
