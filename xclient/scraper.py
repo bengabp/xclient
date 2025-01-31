@@ -13,6 +13,7 @@ from tqdm.asyncio import tqdm_asyncio
 from .constants import *
 from .login import login
 from .util import *
+from .search import Search
 
 try:
     if get_ipython().__class__.__name__ == 'ZMQInteractiveShell':
@@ -42,6 +43,17 @@ class Scraper:
         self.session = self._validate_session(email, username, password, session, **kwargs)
         self.rate_limits = {}
 
+    def search_tweets(self, queries, limit, retries, **kwargs):
+        """
+        Search Tweets
+
+        @param queries: list of queries to search for
+        @param kwargs: optional keyword arguments
+        @return: list of result as dicts
+        """
+
+        return self._run(Operation.SearchTimeline, )
+
     def users(self, screen_names: list[str], **kwargs) -> list[dict]:
         """
         Get user data by screen names.
@@ -60,7 +72,7 @@ class Scraper:
         @param kwargs: optional keyword arguments
         @return: list of tweet data as dicts
         """
-        return self._run(Operation.TweetResultByRestId, tweet_ids, **kwargs)
+        raise NotImplementedError("This is yet to be implemented !")
 
     def tweets_by_ids(self, tweet_ids: list[int | str], **kwargs) -> list[dict]:
         """

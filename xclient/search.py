@@ -41,6 +41,7 @@ class Search:
         self.debug = kwargs.get('debug', 0)
         self.logger = self._init_logger(**kwargs)
         self.session = self._validate_session(email, username, password, session, **kwargs)
+        self.rate_limits = kwargs.get("rate_limits", {})
 
     def run(self, queries: list[dict], limit: int = math.inf, out: str = 'data/search_results', **kwargs):
         out = Path(out)
@@ -84,7 +85,10 @@ class Search:
     async def get(self, client: AsyncClient, params: dict) -> tuple:
         _, qid, name = Operation.SearchTimeline
         r = await client.get(f'https://twitter.com/i/api/graphql/{qid}/{name}', params=build_params(params))
+
+        self.rate_limits[name] = {key: r.headers.get(key) for key in  ['x-rate-limit-remaining', 'x-rate-limit-reset', 'x-rate-limit-limit']}
         data = r.json()
+
         cursor = self.get_cursor(data)
         entries = [y for x in find_key(data, 'entries') for y in x if re.search(r'^(tweet|user)-', y['entryId'])]
         # add on query info
